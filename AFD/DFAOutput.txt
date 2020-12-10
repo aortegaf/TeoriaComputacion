@@ -1,0 +1,12 @@
+c a b b
+[s1, c a b b]->[s2,a b b]->[s3,b b]->[null,b]->
+Not Accepted 
+
+a a b
+[s1, a a b]->[s0,a b]->[s0,b]->[s0] 
+Accepted 
+
+b b a c
+[s1, b b a c]->[s1,b a c]->[s1,a c]->[s0,c]->[null] 
+Not Accepted 
+

@@ -1,0 +1,56 @@
+Presentado por: 
+
+
+ASPECTOS IMPORTANTES
+	-AFN implementación INCOMPLETA y AFNLambda NO IMPLEMENTADO.
+	- La cadena dada al autómata debe tener un espacio entre cada caracter, puesto que la implementacion se realizo de forma que
+	en el alfabeto se pueden agregar varios simbolos haciendo referencia a un solo elemento del alfabeto, por ejemplo, un alfabeto podría ser: 
+	[asd, ..., a, b, c].
+	- Si el archivo contiene estados tanto inicial como de aceptación que no se encuentran en la lista de estados, no los agrega.
+	
+
+División por Paquetes:
+
+	AUTOMATA:
+		-Additional Methods:
+	La clase contiene métodos adicionales para la implementación de otros métodos en la clase DFA y NFA:
+	-void alphabetrangeadd(ArrayList<String> alphabet, String line): permite añadir los caracteres al alfabeto dado un rango.
+	-boolean instates(ArrayList<String> states, String state): comprueba que un estado dado se encuentre en el arreglo de estados.
+	-boolean havesemicolon(String line): comprueba si hay un punto y coma en la línea para realizar las instrucciones necesarias.
+	-Pair<String, String> pair(String a, String b): método que devuelve un par que se utiliza como llave para las funciones delta.
+	-void filldeltaDFA(HashMap<Pair<String, String>, String> delta, ArrayList<String> states, ArrayList<String> alphabet, String line):
+	 Ingresa los datos a la función delta de un AFD.
+	-void filldeltaNFA(HashMap<Pair<String, String>, ArrayList<String>> delta, ArrayList<String> states, ArrayList<String> alphabet, String line)
+	 Ingresa los datos a la función delta de un AFN.
+	-String StringArraytoString(String[] array): Convierte un arreglo a String para su impresión por consola.
+	-String[] RemoveFirst(String[] array): Dado un arreglo de String retorna el arreglo sin su primer elemento, método que se utilizó para la impresión detallada
+	 en el procesamiento de una cadena.
+
+		-DFA:
+	-Contiene el método constructor del AFD, getters y setters.
+	-DFA Reader(String filename): Dado el archivo construye y retorna un AFD.
+	-void StringProcessing(String str): Dada una cadena, la procesa y retorna si es aceptada o no por el automata.
+	-void DetailedStringProcessing(String str): Imprime el proceso que realiza el automata y devuelve también si es aceptada o no la cadena.
+	-void FileDetailedStringProcessing(String str, FileWriter fw): Escribe en un archivo de texto "OutputDFA.txt" el proceso realizado por el 
+	 autómata dada una cadena.
+	-void StringListProcessing(ArrayList<String> strings, String file, boolean print): Implementa el método anterior para escribir en el archivo
+	 de texto el procesamiento de una lista de cadenas dada y en consola si lo desea. 
+	-void String(): Imprime los datos por consola del AFD.
+	-DFA Comp(): Retorna el complemento del AFD al que se le aplique la función, puede mostrarse en pantalla con el método anterior de la forma Comp().String()
+	-void CP_and(DFA dfa1, DFA dfa2): Imprime en consola el producto cartesiano Y entre dos AFD dados con sus respectivos estados de aceptación.
+	-void CP_or(DFA dfa1, DFA dfa2): Imprime en consola el producto cartesiano O entre dos AFD dados con sus respectivos estados de aceptación.
+	-void CP_dif(DFA dfa1, DFA dfa2): Imprime en consola el producto cartesiano DIFERENCIA entre dos AFD dados con sus respectivos estados de aceptación.
+
+		-NFA
+	-Contiene el método constructor del AFN, getters y setters.
+	-DFA Reader(String filename): Dado el archivo construye y retorna un AFN.
+	-void StringProcessing(String str): El método no funciona de forma correcta. Implementación incompleta.
+	-void String(): Imprime los datos por consola del AFN.
+
+
+	MAIN: 
+	La clase main contiene métodos que se probaron para el AFN, no fueron exitosos, por lo tanto, pueden ignorarse.
+	-main: En el método main se aprecia la creación de una lista de cadenas, algunos AFD y un AFN a los que adicionalmente, en forma de comentarios, se agregaron
+	todos los métodos implementados correctamente para poder probar su funcionamiento de forma individual o como se desee.
+	(Aquel comentario marcado como intento fallido, puede ser ignorado)
+	
