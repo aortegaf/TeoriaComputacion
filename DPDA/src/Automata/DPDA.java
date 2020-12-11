@@ -154,17 +154,18 @@ public class DPDA {
         System.out.println("δ = " + this.getDelta().toString() + "\n");
     }
 
-
-    public void stringProcessing(String str) {
+    public void stringProcessing(String str){
         int i = 0;
+        boolean aborted = false;
         String initial = this.initial;
         String actual = initial;
+        String holded = "";
         HashMap<Pair<String, String>, List<String>> delta = this.delta;
         Stack<String> stack = new Stack<>();
         stack.push("$");
         String[] stringSplit = str.split(" ");
 
-        System.out.println(Arrays.toString(stringSplit));
+        System.out.println(str + "\n");
 
         for (String StringSplit1 : stringSplit) {
 
@@ -175,11 +176,14 @@ public class DPDA {
             String replacement = delta.get(search).get(2);
             String peek = stack.peek();
             String chain = "";
+            String holding = "";
 
             for (int j=i; j<stringSplit.length; j++){
                 chain += stringSplit[j];
             }
-            System.out.print("("+actual+","+chain+","+stack.toString()+")->");
+            for (int u=0; u<stack.size(); u++){
+                holding += stack.elementAt(u);
+            }
 
             boolean case1 = (!replacement.equals("$") && topOf.equals(peek) && !peek.equals("$"));
             boolean case2 = (topOf.equals("$") && !replacement.equals("$"));
@@ -194,7 +198,10 @@ public class DPDA {
             }else if (case3){
                 stack.pop();
             }else if (case4){
-                //nada
+                //stack is not affected
+            }else {
+                aborted = true;
+                break;
             }
 
             actual = destination;
@@ -203,11 +210,202 @@ public class DPDA {
 
         }
 
-        System.out.println("("+actual+","+"$"+","+stack.toString()+")");
+        if (this.accepting.contains(actual) && stack.peek().equals("$") && !aborted) System.out.println(" Yes \n");
+        else System.out.println(" No \n");
+    }
 
-        if (this.accepting.contains(actual) && stack.peek().equals("$")) System.out.println("Yes \n");
-        else System.out.println("No \n");
+    public void detailedStringProcessing(String str) {
+        int i = 0;
+        boolean aborted = false;
+        String initial = this.initial;
+        String actual = initial;
+        String holded = "";
+        HashMap<Pair<String, String>, List<String>> delta = this.delta;
+        Stack<String> stack = new Stack<>();
+        stack.push("$");
+        String[] stringSplit = str.split(" ");
+
+        System.out.println(str + "\n");
+
+        for (String StringSplit1 : stringSplit) {
+
+            Pair<String, String> search = new Pair<>(actual, stringSplit[i]);
+
+            String destination = delta.get(search).get(0);
+            String topOf = delta.get(search).get(1);
+            String replacement = delta.get(search).get(2);
+            String peek = stack.peek();
+            String chain = "";
+            String holding = "";
+
+            for (int j=i; j<stringSplit.length; j++){
+                chain += stringSplit[j];
+            }
+            for (int u=0; u<stack.size(); u++){
+                holding += stack.elementAt(u);
+            }
+
+            if (stack.size()>1){
+                System.out.print("("+actual+","+chain+","+holding.substring(1)+")");
+            }else{
+                System.out.print("("+actual+","+chain+","+holding+")");
+            }
+
+            boolean case1 = (!replacement.equals("$") && topOf.equals(peek) && !peek.equals("$"));
+            boolean case2 = (topOf.equals("$") && !replacement.equals("$"));
+            boolean case3 = (topOf.equals(peek) && replacement.equals("$"));
+            boolean case4 = (topOf.equals("$") && replacement.equals("$"));
+
+            if (case1){
+                stack.pop();
+                stack.push(replacement);
+                System.out.print("->");
+            }else if (case2){
+                stack.push(replacement);
+                System.out.print("->");
+            }else if (case3){
+                stack.pop();
+                System.out.print("->");
+            }else if (case4){
+                System.out.print("->");
+                //stack is not affected
+            }else {
+                aborted = true;
+                break;
+            }
+
+            actual = destination;
+
+            i++;
+
+        }
+
+        if (!aborted){
+
+            for (int w = 0; w<stack.size(); w++){
+                holded += stack.elementAt(w);
+            }
+
+            if (holded.length()>1){
+                System.out.print("("+actual+","+"$"+","+holded.substring(1)+") >>");
+            }else{
+                System.out.print("("+actual+","+"$"+","+holded+") >>");
+            }
+
+        }else{
+            System.out.print(" >>");
+        }
+
+
+        if (this.accepting.contains(actual) && stack.peek().equals("$") && !aborted) System.out.println(" Accepted \n");
+        else System.out.println(" Rejected \n");
 
     }
 
+    public void fileDetailedStringProcessing(String str, FileWriter fw){
+        try{
+            int i = 0;
+            boolean aborted = false;
+            String initial = this.initial;
+            String actual = initial;
+            String holded = "";
+            HashMap<Pair<String, String>, List<String>> delta = this.delta;
+            Stack<String> stack = new Stack<>();
+            stack.push("$");
+            String[] stringSplit = str.split(" ");
+
+            fw.write(str + "\t");
+            for(String StringSplit1 : stringSplit){
+                Pair<String, String> search = new Pair<>(actual, stringSplit[i]);
+
+                String destination = delta.get(search).get(0);
+                String topOf = delta.get(search).get(1);
+                String replacement = delta.get(search).get(2);
+                String peek = stack.peek();
+                String chain = "";
+                String holding = "";
+
+                for (int j=i; j<stringSplit.length; j++){
+                    chain += stringSplit[j];
+                }
+                for (int u=0; u<stack.size(); u++){
+                    holding += stack.elementAt(u);
+                }
+
+                if (stack.size()>1){
+                    fw.write("("+actual+","+chain+","+holding.substring(1)+")");
+                }else{
+                    fw.write("("+actual+","+chain+","+holding+")");
+                }
+
+                boolean case1 = (!replacement.equals("$") && topOf.equals(peek) && !peek.equals("$"));
+                boolean case2 = (topOf.equals("$") && !replacement.equals("$"));
+                boolean case3 = (topOf.equals(peek) && replacement.equals("$"));
+                boolean case4 = (topOf.equals("$") && replacement.equals("$"));
+
+                if (case1){
+                    stack.pop();
+                    stack.push(replacement);
+                    fw.write("->");
+                }else if (case2){
+                    stack.push(replacement);
+                    fw.write("->");
+                }else if (case3){
+                    stack.pop();
+                    fw.write("->");
+                }else if (case4){
+                    fw.write("->");
+                    //stack is not affected
+                }else {
+                    aborted = true;
+                    break;
+                }
+
+                actual = destination;
+
+                i++;
+            }
+
+            if (!aborted){
+
+                for (int w = 0; w<stack.size(); w++){
+                    holded += stack.elementAt(w);
+                }
+
+                if (holded.length()>1){
+                    fw.write("("+actual+","+"$"+","+holded.substring(1)+") >>");
+                }else{
+                    fw.write("("+actual+","+"$"+","+holded+") >>");
+                }
+
+            }else{
+                fw.write(" >>");
+            }
+
+            if (this.accepting.contains(actual) && stack.peek().equals("$") && !aborted) fw.write(" Yes \n");
+            else fw.write(" No \n");
+        }
+        catch(IOException e){
+        }
+    }
+
+    public void StringListProcessing(ArrayList<String> strings, String file, boolean print){
+
+        try{
+            FileWriter fw = new FileWriter(file);
+
+            for(int i=0; i<strings.size(); i++){
+                this.fileDetailedStringProcessing(strings.get(i), fw);
+            }
+
+            fw.close();
+        }
+        catch(IOException e){
+        }
+        if(print){
+            for(int i=0; i<strings.size(); i++){
+                this.detailedStringProcessing(strings.get(i));
+            }
+        }
+    }
 }
