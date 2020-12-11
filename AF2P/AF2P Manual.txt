@@ -1,0 +1,33 @@
+
+ASPECTOS IMPORTANTES
+	- La cadena dada al autómata debe tener un espacio entre cada caracter, puesto que la implementacion se realizo de forma que
+	en el alfabeto se pueden agregar varios simbolos haciendo referencia a un solo elemento del alfabeto, por ejemplo, un alfabeto podría ser: 
+	[asd, ..., a, b, c].
+	- Si el archivo contiene estados tanto inicial como de aceptación que no se encuentran en la lista de estados, no los agrega.
+	
+División por Paquetes:
+
+	AUTOMATA:
+		-Additional Methods:
+	La clase contiene métodos adicionales para la implementación de otros métodos en la clase DFA y NFA:
+	-void alphabetrangeadd(ArrayList<String> alphabet, String line): permite añadir los caracteres al alfabeto dado un rango.
+	-boolean instates(ArrayList<String> states, String state): comprueba que un estado dado se encuentre en el arreglo de estados.
+	-boolean havesemicolon(String line): comprueba si hay un punto y coma en la línea para realizar las instrucciones necesarias.
+	-void filldeltaAF2P(HashMap<Pair<String, String>, ArrayList<String>> delta, ArrayList<String> states, ArrayList<String> alphabet, String line):
+	 Ingresa los datos a la función delta de un AFD.	
+
+		-AF2P:
+	-Contiene el método constructor del AFD, getters y setters.
+	-DPDA Reader(String filename): Dado el archivo construye y retorna un AFD.
+	-void StringProcessing(String str): Dada una cadena, la procesa y retorna si es aceptada o no por el automata.
+	-void DetailedStringProcessing(String str): Imprime el proceso que realiza el automata y devuelve también si es aceptada o no la cadena.
+	-void FileDetailedStringProcessing(String str, FileWriter fw): Escribe en un archivo de texto "OutputAF2P.txt" el proceso realizado por el 
+	 autómata dada una cadena.
+	-void StringListProcessing(ArrayList<String> strings, String file, boolean print): Implementa el método anterior para escribir en el archivo
+	 de texto el procesamiento de una lista de cadenas dada y en consola si lo desea. 
+	-void String(): Imprime los datos por consola del AFD.
+
+	MAIN: 
+	
+	-main: En el método main se aprecia la creación de una lista de cadenas y en forma de comentarios, se agregaron
+	todos los métodos implementados correctamente para poder probar su funcionamiento de forma individual o como se desee.

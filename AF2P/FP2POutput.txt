@@ -1,0 +1,3 @@
+a a b b c c	(q0,aabbcc,$) >> No 
+a b c	(q0,abc,$) >> No 
+a b b	(q0,abb,$) >> No 
