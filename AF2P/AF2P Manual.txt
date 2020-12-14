@@ -1,11 +1,11 @@
 
-ASPECTOS IMPORTANTES
+IMPORTANTE
 	- La cadena dada al autómata debe tener un espacio entre cada caracter, puesto que la implementacion se realizo de forma que
 	en el alfabeto se pueden agregar varios simbolos haciendo referencia a un solo elemento del alfabeto, por ejemplo, un alfabeto podría ser: 
 	[asd, ..., a, b, c].
 	- Si el archivo contiene estados tanto inicial como de aceptación que no se encuentran en la lista de estados, no los agrega.
 	
-División por Paquetes:
+Paquetes:
 
 	AUTOMATA:
 		-Additional Methods:
@@ -16,8 +16,8 @@ División por Paquetes:
 	-void filldeltaAF2P(HashMap<Pair<String, String>, ArrayList<String>> delta, ArrayList<String> states, ArrayList<String> alphabet, String line):
 	 Ingresa los datos a la función delta de un AFD.	
 
-		-AF2P:
-	-Contiene el método constructor del AFD, getters y setters.
+	       -AF2P:
+	-Contiene el método constructor del, getters y setters.
 	-DPDA Reader(String filename): Dado el archivo construye y retorna un AFD.
 	-void StringProcessing(String str): Dada una cadena, la procesa y retorna si es aceptada o no por el automata.
 	-void DetailedStringProcessing(String str): Imprime el proceso que realiza el automata y devuelve también si es aceptada o no la cadena.
