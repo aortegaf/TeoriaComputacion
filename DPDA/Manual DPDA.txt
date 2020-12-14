@@ -18,7 +18,7 @@ División por Paquetes:
 
 		-DPDA:
 	-Contiene el método constructor del AFD, getters y setters.
-	-DPDA Reader(String filename): Dado el archivo construye y retorna un AFD.
+	-DPDA Reader(String filename): Dado el archivo construye y retorna u AFDn.
 	-void StringProcessing(String str): Dada una cadena, la procesa y retorna si es aceptada o no por el automata.
 	-void DetailedStringProcessing(String str): Imprime el proceso que realiza el automata y devuelve también si es aceptada o no la cadena.
 	-void FileDetailedStringProcessing(String str, FileWriter fw): Escribe en un archivo de texto "OutputDFA.txt" el proceso realizado por el 

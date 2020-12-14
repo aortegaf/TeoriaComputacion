@@ -88,7 +88,6 @@ public class DPDA {
             String newline;
             newline = br.readLine();
 
-            //System.out.println(newline);
 
             if ("#states".equals(newline)) {
                 ArrayList<String> states = new ArrayList<>();
@@ -210,8 +209,8 @@ public class DPDA {
 
         }
 
-        if (this.accepting.contains(actual) && stack.peek().equals("$") && !aborted) System.out.println(" Yes \n");
-        else System.out.println(" No \n");
+        if (this.accepting.contains(actual) && stack.peek().equals("$") && !aborted) System.out.println(" Accepted \n");
+        else System.out.println(" Rejected \n");
     }
 
     public void detailedStringProcessing(String str) {

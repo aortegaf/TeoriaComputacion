@@ -12,6 +12,7 @@ public class Main {
         trialslist.add("a a b b");
         trialslist.add("a b");
         trialslist.add("a b b");
+        trialslist.add("a a b");
 
         DPDA DPDA = new DPDA();
 
@@ -19,11 +20,11 @@ public class Main {
 
         DPDA.automataToString();
 
-        //DPDA.stringProcessing("a a b b");
+        DPDA.stringProcessing("a a b b");
 
-        //DPDA.detailedStringProcessing("a a b b");
+        DPDA.detailedStringProcessing("a a a b b b b");
 
-        //DPDA.StringListProcessing(trialslist, "DPDAOutput.txt", true);
+        DPDA.StringListProcessing(trialslist, "DPDAOutput.txt", true);
 
     }
 }

@@ -1,3 +1,4 @@
 a a b b	(q0,aabb,$)->(q0,abb,A)->(q0,bb,AA)->(q1,b,A)->(q1,$,$) >> Yes 
 a b	(q0,ab,$)->(q0,b,A)->(q1,$,$) >> Yes 
 a b b	(q0,abb,$)->(q0,bb,A)->(q1,b,$) >> No 
+a a b	(q0,aab,$)->(q0,ab,A)->(q0,b,AA)->(q1,$,A) >> No 
